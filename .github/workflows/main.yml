@@ -29,9 +29,9 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}      
         body: |
               The output of `terraform plan` is:
-              ```
-               $(cat "$(pwd)/tfplan")
-               ```
+              
+               \$(cat "$(pwd)/tfplan")
+              
                
            
             
