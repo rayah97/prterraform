@@ -22,10 +22,10 @@ jobs:
       uses: mshick/add-pr-comment@v2
       
       with:
-        message: |
+        body: |
           The output of `terraform plan` is:
           ```
-          $(cat tfplan)
+          ${{ cat tfplan }}
           ```
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
