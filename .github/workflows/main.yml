@@ -20,6 +20,8 @@ jobs:
       run: terraform init
     - name: Run terraform plan
       run: terraform plan -out=tfplan
+    - name: Print tfplan file
+      run: cat tfplan
     - name: Create comment
       uses: mshick/add-pr-comment@v2
       
