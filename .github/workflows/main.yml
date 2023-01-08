@@ -22,14 +22,25 @@ jobs:
       run: terraform plan -out=tfplan
     - name: Print tfplan file
       run: cat tfplan
+
     - name: Create comment
-      uses: mshick/add-pr-comment@v2
-      
+      uses: peter-evans/create-or-update-comment@v2
       with:
-        message: |
-          The output of `terraform plan` is:
+              body: |
+              The output of `terraform plan` is:
           
-           \$(cat tfplan)          
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+               $(cat tfplan) 
+               
+              
+            
+    # - name: Create comment
+    #   uses: mshick/add-pr-comment@v2
+      
+    #   with:
+    #     message: |
+    #       The output of `terraform plan` is:
+          
+    #        \$(cat tfplan)          
+    #   env:
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
