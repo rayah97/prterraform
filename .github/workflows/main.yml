@@ -21,7 +21,7 @@ jobs:
     - name: Run terraform plan
       run: terraform plan -out=tfplan
     - name: Create comment
-      uses: g/add-pr-comment@v2
+      uses: mshick/add-pr-comment@v2
       
       with:
         message: |
