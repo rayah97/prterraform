@@ -24,14 +24,15 @@ jobs:
       run: cat tfplan
 
     - name: Create comment
-      uses: peter-evans/create-or-update-comment@v2
+      uses: actions-ecosystem/action-create-comment@v1
       with:
-              body: |
+        github_token: ${{ secrets.GITHUB_TOKEN }}      
+        body: |
               The output of `terraform plan` is:
           
                $(cat tfplan) 
                
-              
+           
             
     # - name: Create comment
     #   uses: mshick/add-pr-comment@v2
