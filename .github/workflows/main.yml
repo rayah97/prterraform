@@ -27,7 +27,7 @@ jobs:
         message: |
           The output of `terraform plan` is:
           
-          ${{ cat tfplan }}
+           $(cat tfplan)
           
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
