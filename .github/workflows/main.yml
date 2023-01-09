@@ -31,7 +31,7 @@ jobs:
               The output of `terraform plan` is:
               
                  
-              ${{ cat 'tfplan' }}    
+               ${{ `cat 'tfplan'` }} 
                
            
             
