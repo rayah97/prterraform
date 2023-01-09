@@ -18,6 +18,8 @@ jobs:
           aws-region: us-east-1
       - name: Init Terraform
         run: terraform init
+      - name: Create plan file
+        run: touch plan.out
       - name: Run terraform plan
         id: terraform
         run: terraform plan -out=plan.out
