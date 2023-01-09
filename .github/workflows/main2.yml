@@ -2,7 +2,8 @@ name: Terraform Plan
 
 on:
   pull_request:
-    types: [opened, synchronize]
+    paths:
+      - "*.tf"
 
 jobs:
   build:
