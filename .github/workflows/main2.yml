@@ -20,7 +20,10 @@ jobs:
         run: terraform init
       - name: Run terraform plan
         id: terraform
-        run: terraform plan
+        run: terraform plan -out=plan.out
+      - name: Read plan output
+        run: cat plan.out
+        id: plan_output
       - name: Comment on pull request
         if: ${{ success() }}
         uses: peter-evans/create-or-update-comment@v1
@@ -30,4 +33,4 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |-
             Changes proposed by this pull request:
-            ${{ steps.terraform.outputs.plan }}
+             ${{ steps.plan_output.outputs.stdout }}
