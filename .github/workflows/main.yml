@@ -30,9 +30,11 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}      
         body: |
               The output of `terraform plan` is:
-              ${{ cat 'tfplan.txt' }} 
+              
+                 
+              $(cat tfplan.txt)
     - name: Debug body variable
-      run:|
+      run: |
          echo "body: $body"
 
               
