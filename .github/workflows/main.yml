@@ -32,8 +32,8 @@ jobs:
                            
                   
               ```
-              $(sh -c "cat tfplan")
-              ```      
+              $(cat tfplan)
+              ```   
               
             
     # - name: Create comment
