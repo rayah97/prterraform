@@ -22,7 +22,7 @@ jobs:
         id: terraform
         run: terraform plan -out=plan.out
       - name: Read plan output
-        run: cat plan.out
+        run: terraform show -no-color plan.out
         id: plan_output
       - name: Comment on pull request
         if: ${{ success() }}
