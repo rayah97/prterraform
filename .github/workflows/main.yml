@@ -30,7 +30,8 @@ jobs:
         body: |
               The output of `terraform plan` is:
               
-               $(cat '$(sh -c '"'"'pwd'"'"')'/tfplan')        
+                 
+              ${{ cat 'tfplan' }}    
                
            
             
