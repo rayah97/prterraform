@@ -26,6 +26,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          issue-number: ${{ github.event.pull_request.number }}
           body: |-
             Changes proposed by this pull request:
             ${{ steps.terraform.outputs.plan }}
