@@ -29,10 +29,8 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}      
         body: |
               The output of `terraform plan` is:
-              
-                 
-               ${{ `cat 'tfplan'` }} 
-               
+                           
+              $(cat 'tfplan')               
            
             
     # - name: Create comment
