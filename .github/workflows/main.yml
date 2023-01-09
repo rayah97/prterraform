@@ -22,15 +22,17 @@ jobs:
       run: terraform plan -out=tfplan
     - name: Print tfplan file
       run: cat tfplan
-
+    - name: Convert plan to string
+      run: terraform show -no-color tfplan > tfplan.txt
     - name: Create comment
       uses: actions-ecosystem/action-create-comment@v1
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}      
         body: |
               The output of `terraform plan` is:
-
-              $(printf '%s\n' "$(<tfplan)") 
+              ```
+              $(cat tfplan.txt)
+              ```
               
             
     # - name: Create comment
