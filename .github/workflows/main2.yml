@@ -1,0 +1,26 @@
+name: Terraform Plan
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up AWS credentials
+        env:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+      - name: Run terraform plan
+        run: terraform plan
+      - name: Comment on pull request
+        if: ${{ success() }}
+        uses: peter-evans/create-or-update-comment@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          body: |-
+            Changes proposed by this pull request:
+            ${{ steps.terraform.outputs.plan }}
