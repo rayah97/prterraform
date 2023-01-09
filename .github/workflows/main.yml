@@ -30,10 +30,11 @@ jobs:
         body: |
               The output of `terraform plan` is:
                            
+                  
               ```
-               $(cat tfplan)
-              ```              
-           
+              $(sh -c "cat tfplan")
+              ```      
+              
             
     # - name: Create comment
     #   uses: mshick/add-pr-comment@v2
