@@ -19,6 +19,7 @@ jobs:
       - name: Init Terraform
         run: terraform init
       - name: Run terraform plan
+        id: terraform
         run: terraform plan
       - name: Comment on pull request
         if: ${{ success() }}
