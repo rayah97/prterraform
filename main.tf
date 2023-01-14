@@ -7,5 +7,5 @@ provider "aws" {
   region = "us-east-1"
 }
 resource "aws_s3_bucket" "example" {
-  bucket = "example-bucket-rayah7777667"
+  bucket = "example-bucket-rayah777667"
 }
