@@ -1,38 +1,38 @@
-name: Terraform Plan
+# name: Terraform Plan
 
-on:
-  pull_request:
-    paths:
-      - "*.tf"
+# on:
+#   pull_request:
+#     paths:
+#       - "*.tf"
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: us-east-1
-      - name: Init Terraform
-        run: terraform init
-      - name: Create plan file
-        run: touch plan.out
-      - name: Run terraform plan
-        id: terraform
-        run: terraform plan -out=plan.out
-      - name: Read plan output
-        run: terraform show -no-color plan.out
-        id: plan_output
-      - name: Comment on pull request
-        if: ${{ success() }}
-        uses: peter-evans/create-or-update-comment@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |-
-            Changes proposed by this pull request:
-             ${{ steps.plan_output.outputs.stdout }}
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#       - name: Configure AWS Credentials
+#         uses: aws-actions/configure-aws-credentials@v1
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+#           aws-region: us-east-1
+#       - name: Init Terraform
+#         run: terraform init
+#       # - name: Create plan file
+#       #   run: touch plan.out
+#       - name: Run terraform plan
+#         id: terraform
+#         run: terraform plan -out=plan.out
+#       - name: Read plan output
+#         run: terraform show -no-color plan.out
+#         id: plan_output
+#       - name: Comment on pull request
+#         if: ${{ success() }}
+#         uses: peter-evans/create-or-update-comment@v1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           issue-number: ${{ github.event.pull_request.number }}
+#           body: |-
+#             Changes proposed by this pull request:
+#              ${{ steps.plan_output.outputs.stdout }}
